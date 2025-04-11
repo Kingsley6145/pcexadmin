@@ -1,0 +1,136 @@
+/* src/index.css */
+@import "tailwindcss";
+
+/* Custom global styles */
+/* @import './styles/global.css'; */ /* Remains commented out */
+
+/* Override Preflight styles to fix vertical-align warning */
+@layer base {
+  img, svg, video, canvas, audio, iframe, embed, object {
+    vertical-align: initial; /* Reset vertical-align to avoid the warning */
+  }
+}
+
+/* Custom Tailwind Components */
+@layer components {
+  .card {
+    @apply bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition;
+  }
+
+  .table {
+    @apply w-full text-left bg-gray-800 rounded-lg shadow-md;
+  }
+
+  .table-row {
+    @apply border-t border-gray-700 hover:bg-gray-700 transition;
+  }
+
+  .btn-primary {
+    @apply bg-yellow-400 text-black p-3 rounded-lg font-semibold hover:bg-yellow-500 transition flex items-center space-x-2;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-600 text-white p-3 rounded-lg hover:bg-gray-500 transition;
+  }
+
+  .icon-link {
+    @apply flex items-center space-x-3 p-3 rounded-lg text-gray-300 hover:bg-gray-800 hover:text-yellow-400 transition;
+  }
+
+  .section-heading {
+    @apply text-xl font-semibold text-white mb-4 flex items-center space-x-2;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .gradient-text {
+    @apply bg-gradient-to-r from-yellow-400 to-orange-500 text-transparent bg-clip-text;
+  }
+}
+
+/* Theme-specific styles */
+[data-theme="dark"] {
+  /* Already handled by Tailwind classes */
+}
+
+[data-theme="dark"] input::placeholder {
+  color: #ffffff;
+}
+
+[data-theme="light"] {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+[data-theme="light"] input::placeholder {
+  color: #000000;
+}
+
+[data-theme="light"] .text-white {
+  color: #1f2937;
+}
+
+[data-theme="light"] .bg-black {
+  background-color: #f3f4f6;
+}
+
+[data-theme="light"] .bg-gray-900 {
+  background-color: #e5e7eb;
+}
+
+[data-theme="light"] .bg-gray-800 {
+  background-color: #ffffff;
+}
+
+[data-theme="light"] .bg-gray-700 {
+  background-color: #d1d5db;
+}
+
+[data-theme="light"] .text-gray-400 {
+  color: #6b7280;
+}
+
+[data-theme="light"] .text-gray-300 {
+  color: #4b5563;
+}
+
+[data-theme="light"] .border-gray-700 {
+  border-color: #d1d5db;
+}
+
+[data-theme="light"] .hover\:bg-gray-700:hover {
+  background-color: #d1d5db;
+}
+
+[data-theme="light"] .hover\:bg-gray-800:hover {
+  background-color: #d1d5db;
+}
+
+[data-theme="light"] .text-green-500 {
+  color: #16a34a;
+}
+
+[data-theme="light"] .bg-gray-600 {
+  background-color: #9ca3af;
+}
+
+[data-theme="light"] .hover\:bg-gray-500:hover {
+  background-color: #6b7280;
+}
+
+[data-theme="light"] .bg-green-500 {
+  background-color: #16a34a;
+}
+
+[data-theme="light"] .text-yellow-400 {
+  color: #d97706;
+}
+
+[data-theme="light"] .hover\:text-yellow-400:hover {
+  color: #d97706;
+}
+
+[data-theme="light"] .hover\:text-red-400:hover {
+  color: #dc2626; /* Darker red for logout hover in light mode */
+}
