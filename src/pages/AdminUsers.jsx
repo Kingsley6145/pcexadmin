@@ -49,12 +49,12 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
+    <div className="flex min-h-screen">
       {/* Sidebar */}
       <div
-        className={`transition-all duration-300 md:w-64 ${
-          isSidebarOpen ? 'w-full md:w-64' : 'w-0'
-        } overflow-hidden`}
+        className={`transition-all duration-300 ${
+          isSidebarOpen ? 'w-64' : 'w-0'
+        } overflow-hidden bg-gray-900`} // Updated width and added bg-gray-900
       >
         <Sidebar />
       </div>
@@ -62,8 +62,8 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
       {/* Main Content */}
       <div
         className={`flex-1 transition-all duration-300 ${
-          isSidebarOpen ? 'md:ml-64' : 'ml-0'
-        }`}
+          isSidebarOpen ? 'ml-6' : 'ml-0'
+        }`} // Added ml-6 for 24px gap when sidebar is open
       >
         <AdminHeader
           toggleSidebar={toggleSidebar}
@@ -72,7 +72,7 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
           credentials={credentials}
           setCredentials={setCredentials}
         />
-        <div className="p-4 sm:p-8">
+        <div className="p-4 sm:p-8 pl-0"> {/* Added pl-0 to remove left padding */}
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
             Manage Users
           </h2>

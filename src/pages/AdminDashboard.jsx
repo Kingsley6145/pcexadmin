@@ -12,13 +12,24 @@ const AdminDashboard = ({ setTheme, theme }) => {
   };
 
   return (
-    <div className="flex">
-      <div className={`transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-0'} overflow-hidden`}>
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <div
+        className={`transition-all duration-300 ${
+          isSidebarOpen ? 'w-64' : 'w-0'
+        } overflow-hidden bg-gray-900`}
+      >
         <Sidebar />
       </div>
-      <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
+
+      {/* Main Content */}
+      <div
+        className={`flex-1 transition-all duration-300 ${
+          isSidebarOpen ? 'ml-6' : 'ml-0'
+        }`} // Added ml-6 when sidebar is open to match gap-6
+      >
         <AdminHeader toggleSidebar={toggleSidebar} setTheme={setTheme} theme={theme} />
-        <div className="p-8">
+        <div className="p-8 pl-0">
           <h2 className="text-3xl font-bold text-white mb-8">Admin Dashboard</h2>
           <div className="mb-10">
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center space-x-2">
@@ -70,12 +81,12 @@ const AdminDashboard = ({ setTheme, theme }) => {
                   <tr className="border-t border-gray-700 hover:bg-gray-700 transition">
                     <td className="p-4 text-white">Kings</td>
                     <td className="p-4 text-white">Recharge $100</td>
-                    <td className="p-4 text-white">Apr 7, 2025</td>
+                    <td className="p-4 text-white">Apr 7, 2024</td>
                   </tr>
                   <tr className="border-t border-gray-700 hover:bg-gray-700 transition">
                     <td className="p-4 text-white">Jeff</td>
                     <td className="p-4 text-white">Withdraw $50</td>
-                    <td className="p-4 text-white">Apr 6, 2025</td>
+                    <td className="p-4 text-white">Apr 6, 2024</td>
                   </tr>
                 </tbody>
               </table>
