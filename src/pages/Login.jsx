@@ -41,7 +41,8 @@ const Login = ({ setIsAuthenticated }) => {
         )}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label className="block text-gray-400 mb-2 flex items-center space-x-2">
+            <label className="text-gray-400 mb-2 flex items-center space-x-2">
+              {/* Removed 'block' to resolve conflict with 'flex' */}
               <FaUser />
               <span>Username</span>
             </label>
@@ -55,7 +56,8 @@ const Login = ({ setIsAuthenticated }) => {
             />
           </div>
           <div className="mb-6">
-            <label className="block text-gray-400 mb-2 flex items-center space-x-2">
+            <label className="text-gray-400 mb-2 flex items-center space-x-2">
+              {/* Removed 'block' to resolve conflict with 'flex' */}
               <FaLock />
               <span>Password</span>
             </label>
