@@ -4,7 +4,7 @@ import AdminHeader from '../components/AdminHeader';
 import Sidebar from '../components/Sidebar';
 import { FaEdit, FaTrash, FaUsers } from 'react-icons/fa';
 
-const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
+const AdminUsers = ({ setTheme, theme }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [users, setUsers] = useState(() => {
     const storedUsers = localStorage.getItem('users');
@@ -17,7 +17,6 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
   });
   const [editingUser, setEditingUser] = useState(null);
 
-  // Persist users to localStorage whenever the users array changes
   useEffect(() => {
     localStorage.setItem('users', JSON.stringify(users));
   }, [users]);
@@ -54,7 +53,7 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
       <div
         className={`transition-all duration-300 ${
           isSidebarOpen ? 'w-64' : 'w-0'
-        } overflow-hidden bg-gray-900`} // Updated width and added bg-gray-900
+        } overflow-hidden bg-gray-900`}
       >
         <Sidebar />
       </div>
@@ -63,16 +62,10 @@ const AdminUsers = ({ setTheme, theme, credentials, setCredentials }) => {
       <div
         className={`flex-1 transition-all duration-300 ${
           isSidebarOpen ? 'ml-6' : 'ml-0'
-        }`} // Added ml-6 for 24px gap when sidebar is open
+        }`}
       >
-        <AdminHeader
-          toggleSidebar={toggleSidebar}
-          setTheme={setTheme}
-          theme={theme}
-          credentials={credentials}
-          setCredentials={setCredentials}
-        />
-        <div className="p-4 sm:p-8 pl-0"> {/* Added pl-0 to remove left padding */}
+        <AdminHeader toggleSidebar={toggleSidebar} setTheme={setTheme} theme={theme} />
+        <div className="p-4 sm:p-8 pl-0">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8">
             Manage Users
           </h2>

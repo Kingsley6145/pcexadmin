@@ -1,9 +1,11 @@
 // src/components/AdminHeader.jsx
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 import { FaUserCircle, FaBars, FaCog, FaSignOutAlt, FaEnvelope, FaPalette, FaSave } from 'react-icons/fa';
 
 const AdminHeader = ({ toggleSidebar, setTheme, theme }) => {
+  const { authState, logout } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [selectedTheme, setSelectedTheme] = useState(theme);
@@ -32,7 +34,7 @@ const AdminHeader = ({ toggleSidebar, setTheme, theme }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('isAuthenticated');
+    logout(); // Use AuthContext logout
     setIsDropdownOpen(false);
     navigate('/login');
   };
@@ -85,8 +87,8 @@ const AdminHeader = ({ toggleSidebar, setTheme, theme }) => {
                         </label>
                         <input
                           type="email"
+                          value={authState.user?.email || 'admin@example.com'}
                           className="w-full p-2 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 text-sm"
-                          placeholder="admin@example.com"
                           disabled
                         />
                       </div>

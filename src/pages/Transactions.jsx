@@ -4,25 +4,24 @@ import AdminHeader from '../components/AdminHeader';
 import Sidebar from '../components/Sidebar';
 import { FaExchangeAlt, FaCheckCircle, FaHourglassHalf } from 'react-icons/fa';
 import QRCode from 'react-qr-code';
-import dummyImage from '../assets/dummy.png'; // Import the specific image
+import dummyImage from '../assets/dummy.png';
 
 const Transactions = ({ setTheme, theme }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [selectedCurrency, setSelectedCurrency] = useState(''); // State for selected currency
-  const [selectedNetwork, setSelectedNetwork] = useState(''); // State for selected network
-  const [pastedAddress, setPastedAddress] = useState(''); // State for the pasted address
+  const [selectedCurrency, setSelectedCurrency] = useState('');
+  const [selectedNetwork, setSelectedNetwork] = useState('');
+  const [pastedAddress, setPastedAddress] = useState('');
 
-  // Transaction history data
+  // Transaction history data with updated dates
   const transactions = [
-    { user: 'Kings', type: 'Recharge', amount: '$100', date: 'Apr 7, 2025', status: 'Completed' },
-    { user: 'Jeff', type: 'Withdraw', amount: '$50', date: 'Apr 6, 2025', status: 'Pending' },
+    { user: 'Kings', type: 'Recharge', amount: '$100', date: 'Apr 17, 2025', status: 'Completed' },
+    { user: 'Jeff', type: 'Withdraw', amount: '$50', date: 'Apr 16, 2025', status: 'Pending' },
   ];
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // Function to handle the Save button click
   const handleSave = () => {
     console.log('Saved Address:', pastedAddress);
     // Add your save functionality here (e.g., API call, download QR code, etc.)
@@ -34,7 +33,7 @@ const Transactions = ({ setTheme, theme }) => {
       <div
         className={`transition-all duration-300 ${
           isSidebarOpen ? 'w-64' : 'w-0'
-        } overflow-hidden bg-gray-900`} // Added bg-gray-900
+        } overflow-hidden bg-gray-900`}
       >
         <Sidebar />
       </div>
@@ -43,13 +42,13 @@ const Transactions = ({ setTheme, theme }) => {
       <div
         className={`flex-1 transition-all duration-300 ${
           isSidebarOpen ? 'ml-6' : 'ml-0'
-        }`} // Updated to ml-6 for 24px gap
+        }`}
       >
         <AdminHeader toggleSidebar={toggleSidebar} setTheme={setTheme} theme={theme} />
-        <div className="p-8 pl-0"> {/* Added pl-0 to remove left padding */}
+        <div className="p-8 pl-0">
           <h2 className="text-3xl font-bold text-white mb-8">Transactions</h2>
 
-          {/* New Section: Recharge QR Code Generator */}
+          {/* Recharge QR Code Generator */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-md mb-8">
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center space-x-2">
               <FaExchangeAlt className="text-yellow-400" />
@@ -68,8 +67,8 @@ const Transactions = ({ setTheme, theme }) => {
                 <button
                   onClick={() => {
                     setSelectedCurrency('USDT');
-                    setSelectedNetwork(''); // Reset network when currency changes
-                    setPastedAddress(''); // Reset pasted address when currency changes
+                    setSelectedNetwork('');
+                    setPastedAddress('');
                   }}
                   className={`flex items-center space-x-2 p-3 rounded-lg ${
                     selectedCurrency === 'USDT' ? 'bg-gray-700' : 'bg-gray-600'
@@ -81,8 +80,8 @@ const Transactions = ({ setTheme, theme }) => {
                 <button
                   onClick={() => {
                     setSelectedCurrency('USDC');
-                    setSelectedNetwork(''); // Reset network when currency changes
-                    setPastedAddress(''); // Reset pasted address when currency changes
+                    setSelectedNetwork('');
+                    setPastedAddress('');
                   }}
                   className={`flex items-center space-x-2 p-3 rounded-lg ${
                     selectedCurrency === 'USDC' ? 'bg-gray-700' : 'bg-gray-600'
@@ -94,7 +93,7 @@ const Transactions = ({ setTheme, theme }) => {
               </div>
             </div>
 
-            {/* Step 2: Select Network (only show if a currency is selected) */}
+            {/* Step 2: Select Network */}
             {selectedCurrency && (
               <div className="mb-6">
                 <h4 className="text-lg text-white mb-2 flex items-center space-x-2">
@@ -107,7 +106,7 @@ const Transactions = ({ setTheme, theme }) => {
                   value={selectedNetwork}
                   onChange={(e) => {
                     setSelectedNetwork(e.target.value);
-                    setPastedAddress(''); // Reset pasted address when network changes
+                    setPastedAddress('');
                   }}
                   className="w-full sm:w-1/3 p-3 bg-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"
                 >
@@ -123,7 +122,7 @@ const Transactions = ({ setTheme, theme }) => {
               </div>
             )}
 
-            {/* Step 3: Paste Address (only show if a network is selected) */}
+            {/* Step 3: Paste Address */}
             {selectedNetwork && (
               <div className="mb-6">
                 <h4 className="text-lg text-white mb-2 flex items-center space-x-2">
@@ -142,17 +141,15 @@ const Transactions = ({ setTheme, theme }) => {
               </div>
             )}
 
-            {/* Display Dummy Image or QR Code (only if a network is selected) */}
+            {/* Display Dummy Image or QR Code */}
             {selectedNetwork && (
               <div className="text-center">
                 <div className="flex justify-center mb-4">
                   {pastedAddress ? (
-                    // Show QR Code if an address is pasted
                     <div className="inline-block rounded-lg overflow-hidden">
                       <QRCode value={pastedAddress} size={200} />
                     </div>
                   ) : (
-                    // Show Dummy Image if no address is pasted
                     <div className="inline-block rounded-lg overflow-hidden">
                       <img
                         src={dummyImage}
@@ -162,11 +159,10 @@ const Transactions = ({ setTheme, theme }) => {
                     </div>
                   )}
                 </div>
-                {/* Save Button */}
                 <button
                   onClick={handleSave}
                   className="bg-yellow-400 text-black p-3 rounded-lg font-semibold hover:bg-yellow-500 transition"
-                  disabled={!pastedAddress} // Disable the button if no address is pasted
+                  disabled={!pastedAddress}
                 >
                   Save
                 </button>
@@ -174,7 +170,7 @@ const Transactions = ({ setTheme, theme }) => {
             )}
           </div>
 
-          {/* Existing Section: Transaction History */}
+          {/* Transaction History */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-md">
             <h3 className="text-xl font-semibold text-white mb-4 flex items-center space-x-2">
               <FaExchangeAlt className="text-yellow-400" />

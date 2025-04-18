@@ -26,7 +26,7 @@ const AdminDashboard = ({ setTheme, theme }) => {
       <div
         className={`flex-1 transition-all duration-300 ${
           isSidebarOpen ? 'ml-6' : 'ml-0'
-        }`} // Added ml-6 when sidebar is open to match gap-6
+        }`}
       >
         <AdminHeader toggleSidebar={toggleSidebar} setTheme={setTheme} theme={theme} />
         <div className="p-8 pl-0">
